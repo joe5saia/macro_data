@@ -6,8 +6,9 @@ The python script will read it in from there. The Docker files are stored in `.d
 Currently we pull the Greenbook forecast data, Federal Reserve BOG output gap estimates and the execess bond premium measures from Gilchrist and Zakrajsek. The Greenbookk data 
 is stored in the `gb_forecasts` table with the schema
                          
-    Column    |       Type       | Description               
---- | --- | ---
+Column | Type | Description
+-------|------|------------
+variable | text | Greenbook variable name
 variable     | text             | Greenbook variable name   
 forecastdate | date             | Date of forecast          
 valuedate    | date             | Quarterly forecasted date 
