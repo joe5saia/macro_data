@@ -7,7 +7,7 @@ Currently we pull the Greenbook forecast data, Federal Reserve BOG output gap es
 is stored in the `gb_forecasts` table with the schema
                          
     Column    |       Type       |  Description
---------------+------------------+-------------------------
+--------------|------------------|-------------------------
  variable     | text             |Greenbook variable name
  forecastdate | date             |Date of forecast
  valuedate    | date             |Quarterly forecasted date
@@ -19,7 +19,7 @@ https://www.philadelphiafed.org/surveys-and-data/real-time-data-research/greenbo
 The GZ excess bond premium data is downloaded from https://www.federalreserve.gov/econresdata/notes/feds-notes/2016/files/ebp_csv.csv
 and is stored in the table `macro_data` with the schema 
   Column  |       Type       |
-----------+------------------+
+----------|------------------|
  date     | date             |
  variable | text             |
  value    | double precision |
