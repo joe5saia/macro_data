@@ -1,5 +1,9 @@
+# Project Specific stuff
+
 pgres_url.txt
 .vscode/settings.json
+wrdsdata/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
