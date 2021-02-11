@@ -26,7 +26,7 @@ def read_gb(fname):
     df.loc[:, 'variable'] = df.loc[:, 'var_fdate'].apply(lambda x: x[0:-9])
     df.loc[:, 'forecastdate'] = pd.to_datetime(df.loc[:, 'var_fdate'].apply(lambda x: x[-8:]), format='%Y%m%d')
     df.loc[:, 'year'] = np.floor(df.loc[:, 'valuedate'])
-    df.loc[:, 'month'] = 3*np.round(10*(df.loc[:, 'valuedate'] - np.floor(df.loc[:, 'valuedate'])))
+    df.loc[:, 'month'] = 3 * np.round(10*(df.loc[:, 'valuedate'] - np.floor(df.loc[:, 'valuedate'])))
     df.loc[:, 'day'] = np.divide(np.floor(df.loc[:, 'valuedate']), np.floor(df.loc[:, 'valuedate']))
     df.loc[:, 'valuedate'] = pd.to_datetime(df.loc[:, ['year', 'month', 'day']]) + pd.tseries.offsets.QuarterEnd()
     return df.loc[:, ['variable', 'forecastdate', 'valuedate', 'value']]
