@@ -3,13 +3,14 @@ from urllib.request import urlopen
 from zipfile import ZipFile
 import pandas as pd
 import os
+import numpy as np
 import sqlalchemy
 from sqlalchemy import create_engine
 import datapungi_fed as dpf
 
 
 def myengine():
-    return create_engine(open("/workspace/pgres_url.txt", "r").read())
+    return create_engine(open("pgres_url.txt", "r").read())
 
 
 gb_all_url = 'https://www.philadelphiafed.org/-/media/frbp/assets/surveys-and-data/greenbook-data/gbweb/gbweb_all_column_format.zip?la=en&hash=22851EFA1EF12BDB30474720752BB409'
@@ -88,7 +89,7 @@ def main():
     df = pull_fred_data(fseries)
     df = df.join(read_wrds_csv(), how='outer')
     fname = 'https://www.federalreserve.gov/econresdata/notes/feds-notes/2016/files/ebp_csv.csv'
-    df.join(read_ebp(fname), howw='outer')
+    df.join(read_ebp(fname), how='outer')
     dflong = pd.melt(df, ignore_index=False).dropna()
     print("Replacing macro_data SQL table!")
     dflong.to_sql('macro_data', myengine(), if_exists='replace', index=True,
