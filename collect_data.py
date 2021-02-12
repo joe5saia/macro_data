@@ -91,7 +91,8 @@ def main():
     fname = 'https://www.federalreserve.gov/econresdata/notes/feds-notes/2016/files/ebp_csv.csv'
     df.join(read_ebp(fname), how='outer')
     dflong = pd.melt(df, ignore_index=False).dropna()
-    dflong.set_index('variable', append=True, inplace=True).sort_index(inplace=True)
+    dflong.set_index('variable', append=True, inplace=True)
+    dflong.sort_index(inplace=True)
     print("Replacing macro_data SQL table!")
     dflong.to_sql('macro_data', myengine(), if_exists='replace', index=True,
                   method='multi', dtype={"datem": sqlalchemy.Date()})
