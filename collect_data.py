@@ -89,7 +89,7 @@ def main():
     df = pull_fred_data(fseries)
     df = df.join(read_wrds_csv(), how='outer')
     fname = 'https://www.federalreserve.gov/econresdata/notes/feds-notes/2016/files/ebp_csv.csv'
-    df.join(read_ebp(fname), how='outer')
+    df = df.join(read_ebp(fname), how='outer')
     dflong = pd.melt(df, ignore_index=False).dropna()
     dflong.set_index('variable', append=True, inplace=True)
     dflong.sort_index(inplace=True)
