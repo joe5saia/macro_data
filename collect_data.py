@@ -57,6 +57,13 @@ def read_ebp(fname):
     return df
 
 
+def read_bbk_mgdp():
+    df = pd.read_excel('https://www.chicagofed.org/~/media/publications/bbki/bbki-data-series-xlsx.xlsx', sheet_name='monthly_data').loc[:, ['Date', 'MGDP']]
+    df.columns = ['datem', 'bbk_mgdp']
+    df.set_index('datem', inplace=True)
+    return df
+
+
 def read_wrds_csv():
     """
     loops through all the files in wrdsdata and reads them in
@@ -90,6 +97,7 @@ def main():
     df = df.join(read_wrds_csv(), how='outer')
     fname = 'https://www.federalreserve.gov/econresdata/notes/feds-notes/2016/files/ebp_csv.csv'
     df = df.join(read_ebp(fname), how='outer')
+    df.join(read_bbk_mgdp(), how='outer')
     dflong = pd.melt(df, ignore_index=False).dropna()
     dflong.set_index('variable', append=True, inplace=True)
     dflong.sort_index(inplace=True)
